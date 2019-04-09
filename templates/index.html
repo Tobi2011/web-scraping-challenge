@@ -4,7 +4,7 @@
 img {
     display: inline-block;
     max-width: 100%;
-    max-height: 100%;
+    max-height: auto;
 }
 </style>
 
@@ -17,37 +17,43 @@ img {
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="jumbotron text-center">
+  <div class="container-fluid"> <!-- Start: Menu Container-->
+    <div class="jumbotron text-center"> <!-- Start Jumbotron-->
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
-    </div>
-  </div>
-  <div class=container-fluid>
-    <div class ="row">
-      <div class = "col-md-8">
+    </div><!-- End: Menu Container-->
+  </div><!-- End Jumbotron-->
+  <div class="container-fluid "> <!-- Start: News 2 panel container-->
+    <div class ="row"> <!-- Start : Row News Article/Facts/Weather -->
+      <div class = "col-md-8"> <!-- Start : Article-->
         <h2> Latest Mars News</h2>
         <h3>{{ mars_news.news_title }}</h3>
         <p>{{ mars_news.news_p }}</p>
-        <h2>Features Mars Image</h2>
+        <h2>Featured Mars Image</h2>
         <img src={{ mars_news.featured_image_url }}>
-      </div>
-      <div class = "col-md-4">
+      </div><!-- End : Article-->
+      <div class = "col-md-4"> <!-- Start: Weather/Facts-->
           <h3>Current Weather on Mars</h3>
           <p>{{ mars_news.mars_weather }}</p>
           <h3>Mars Facts</h3>
           {{ mars_news.html_table|safe }}
-      </div>
-      <div class = "row">
+      </div><!-- End: Weather/Facts-->
+    </div><!-- End : Row News Article/Facts/Weather -->
+  </div><!-- End: News 2 panel container-->
+      <div class = "row"> <!-- Start: Row Mars Hemispheres Title-->
         <h2 class = "text-center">Mars Hemispheres</h2>
-        <div class = "col-md-4">
-          {% for link in mars_news.hemisphere_image_urls %}
+      </div><!-- End: Row Mars Hemispheres Title-->
+      <div class = "row"> <!-- Start: hemisphere image row-->
+        {% for link in mars_news.hemisphere_image_urls %}
+        <div class = "col-sm-12 col-md-6 col-lg-6"> <!-- Start: 4 column hemisphere image row-->
             <h2 class = "text-center">{{ link.title }}</h2>
             <img src = {{ link.img_link }}>
-          {% endfor %}
-        </div>
-      </div>
-  </div>
+          
+        </div><!-- End: 4 column hemisphere image row-->
+        {% endfor %}
+      </div><!-- End: hemisphere image row-->
+      
+  
 
 
 </body>
